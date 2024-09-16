@@ -72,6 +72,7 @@
       <DependentUpon>FOCS.mdf</DependentUpon>
     </Content>
     <Content Include="Client\Home\WebForm1.aspx" />
+    <Content Include="Client\MinReq\spm_req.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +89,13 @@
     </Compile>
     <Compile Include="Client\MasterPage\MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Client\MinReq\spm_req.aspx.cs">
+      <DependentUpon>spm_req.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\MinReq\spm_req.aspx.designer.cs">
+      <DependentUpon>spm_req.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
