@@ -71,10 +71,26 @@
     <Content Include="App_Data\FOCS_log.ldf">
       <DependentUpon>FOCS.mdf</DependentUpon>
     </Content>
+    <Content Include="Client\Chat\Chat.aspx" />
+    <Content Include="Client\Chat\icons\arrow-down.svg" />
+    <Content Include="Client\Chat\icons\arrow-up.svg" />
+    <Content Include="Client\Chat\icons\attachment.svg" />
+    <Content Include="Client\Chat\icons\checkmark.svg" />
+    <Content Include="Client\Chat\icons\copy.svg" />
+    <Content Include="Client\Chat\icons\time.svg" />
+    <Content Include="Client\Chat\js\scripts.js" />
+    <Content Include="Client\Chat\styles\styles.css" />
     <Content Include="Client\Home\WebForm1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Chat\Chat.aspx.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Chat\Chat.aspx.designer.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Client\Home\WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -93,6 +109,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\MasterPage\MasterPage.Master" />
+    <Content Include="Client\Chat\data\messages.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
