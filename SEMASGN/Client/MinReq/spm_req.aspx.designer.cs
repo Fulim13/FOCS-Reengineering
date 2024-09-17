@@ -78,6 +78,24 @@ namespace SEMASGN.Client.MinReq
         protected global::System.Web.UI.WebControls.TextBox txtGrade2;
 
         /// <summary>
+        /// txtSubject3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSubject3;
+
+        /// <summary>
+        /// txtGrade3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGrade3;
+
+        /// <summary>
         /// btnCheck control.
         /// </summary>
         /// <remarks>

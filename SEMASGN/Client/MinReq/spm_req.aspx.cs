@@ -61,24 +61,30 @@ namespace SEMASGN.Client.MinReq
         // Check if the user meets the minimum requirements
         protected void btnCheck_Click(object sender, EventArgs e)
         {
-            string selectedCourseID = ddlCourse.SelectedValue;
-            string subject1 = txtSubject1.Text;
-            string grade1 = txtGrade1.Text;
-            string subject2 = txtSubject2.Text;
-            string grade2 = txtGrade2.Text;
-
-            ProgrammeModel programme = GetProgrammeRequirements(selectedCourseID);
-
-            bool isEligible = CheckRequirements(programme, subject1, grade1, subject2, grade2);
-
-            if (isEligible)
+            // Ensure validation before proceeding
+            if (IsValidInput())
             {
-                lblResult.Text = "Congratulations! You meet the minimum requirements.";
-                lblResult.ForeColor = System.Drawing.Color.Green;
-            }
-            else
-            {
-                lblResult.Text = "Sorry, you do not meet the minimum requirements.";
+                string selectedCourseID = ddlCourse.SelectedValue;
+                string subject1 = txtSubject1.Text;
+                string grade1 = txtGrade1.Text;
+                string subject2 = txtSubject2.Text;
+                string grade2 = txtGrade2.Text;
+                string subject3 = txtSubject3.Text;
+                string grade3 = txtGrade3.Text;
+
+                ProgrammeModel programme = GetProgrammeRequirements(selectedCourseID);
+
+                bool isEligible = CheckRequirements(programme, subject1, grade1, subject2, grade2, subject3, grade3);
+
+                if (isEligible)
+                {
+                    lblResult.Text = "Congratulations! You meet the minimum requirements.";
+                    lblResult.ForeColor = System.Drawing.Color.Green;
+                }
+                else
+                {
+                    lblResult.Text = "Sorry, you do not meet the minimum requirements.";
+                }
             }
         }
 
@@ -119,18 +125,16 @@ namespace SEMASGN.Client.MinReq
         }
 
         // Check if the user's input meets the minimum requirements
-        private bool CheckRequirements(ProgrammeModel programme, string subject1, string grade1, string subject2, string grade2)
+        private bool CheckRequirements(ProgrammeModel programme, string subject1, string grade1, string subject2, string grade2, string subject3, string grade3)
         {
-            // Simple logic to compare user grades with the programme requirements (you can enhance this as needed)
-            // For simplicity, we assume grades A-F for STPM/UEC/A-Level and CGPA for Other IHL
-
             if (programme != null)
             {
-                if (programme.LocalMinReq.Contains("STPM") && (grade1 == "C" || grade2 == "C" || grade1 == "B" || grade2 == "B" || grade1 == "A" || grade2 == "A"))
+                // Simple grade comparison logic
+                if (programme.LocalMinReq.Contains("STPM") && (grade1 == "C" || grade2 == "C" || grade3 == "C"))
                 {
                     return true;
                 }
-                if (programme.LocalMinReq.Contains("UEC") && (grade1 == "B" || grade2 == "B" || grade1 == "A" || grade2 == "A"))
+                if (programme.LocalMinReq.Contains("UEC") && (grade1 == "B" || grade2 == "B" || grade3 == "B"))
                 {
                     return true;
                 }
@@ -140,6 +144,24 @@ namespace SEMASGN.Client.MinReq
                 }
             }
             return false;
+        }
+
+        // Validation method to ensure all fields are filled
+        private bool IsValidInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtSubject1.Text) || string.IsNullOrWhiteSpace(txtGrade1.Text))
+            {
+                lblResult.Text = "Please fill out Subject 1 and Grade 1.";
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtSubject2.Text) || string.IsNullOrWhiteSpace(txtGrade2.Text))
+            {
+                lblResult.Text = "Please fill out Subject 2 and Grade 2.";
+                return false;
+            }
+
+            return true;
         }
 
         // ProgrammeModel class to store programme data
