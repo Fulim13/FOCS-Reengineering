@@ -42,58 +42,31 @@ namespace SEMASGN.Client.MinReq
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl subjectSection;
 
         /// <summary>
-        /// txtSubject1 control.
+        /// subjectPlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubject1;
+        protected global::System.Web.UI.WebControls.PlaceHolder subjectPlaceHolder;
 
         /// <summary>
-        /// txtGrade1 control.
+        /// btnAddSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGrade1;
+        protected global::System.Web.UI.WebControls.Button btnAddSubject;
 
         /// <summary>
-        /// txtSubject2 control.
+        /// btnRemoveSubject control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubject2;
-
-        /// <summary>
-        /// txtGrade2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGrade2;
-
-        /// <summary>
-        /// txtSubject3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSubject3;
-
-        /// <summary>
-        /// txtGrade3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtGrade3;
+        protected global::System.Web.UI.WebControls.Button btnRemoveSubject;
 
         /// <summary>
         /// btnCheck control.

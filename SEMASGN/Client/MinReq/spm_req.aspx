@@ -42,10 +42,6 @@
             border: 1px solid #ccc;
         }
 
-        input[type="text"]:invalid {
-            border: 1px solid red;
-        }
-
         .grade-input {
             width: 70px;
         }
@@ -62,6 +58,20 @@
 
         .btn:hover {
             background-color: #45a049;
+        }
+
+        .remove-btn {
+            padding: 5px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .remove-btn:hover {
+            background-color: #d32f2f;
         }
 
         .result-message {
@@ -83,24 +93,15 @@
 
         <div id="subjectSection" runat="server" visible="false">
             <label>Subjects and Grades:</label>
-            <div>
-                <label for="txtSubject1">Subject 1:</label>
-                <asp:TextBox ID="txtSubject1" runat="server" placeholder="Subject 1" required="true" />
-                <asp:TextBox ID="txtGrade1" runat="server" CssClass="grade-input" placeholder="Grade (A-F or CGPA)" required="true" />
-            </div>
-            <div>
-                <label for="txtSubject2">Subject 2:</label>
-                <asp:TextBox ID="txtSubject2" runat="server" placeholder="Subject 2" required="true" />
-                <asp:TextBox ID="txtGrade2" runat="server" CssClass="grade-input" placeholder="Grade (A-F or CGPA)" required="true" />
-            </div>
-            <div>
-                <label for="txtSubject3">Subject 3:</label>
-                <asp:TextBox ID="txtSubject3" runat="server" placeholder="Subject 3" />
-                <asp:TextBox ID="txtGrade3" runat="server" CssClass="grade-input" placeholder="Grade (A-F or CGPA)" />
-            </div>
+
+            <asp:PlaceHolder ID="subjectPlaceHolder" runat="server"></asp:PlaceHolder>
+
+            <asp:Button ID="btnAddSubject" runat="server" Text="Add More Subject" CssClass="btn" OnClick="btnAddSubject_Click" />
+            <asp:Button ID="btnRemoveSubject" runat="server" Text="Remove Last Subject" CssClass="remove-btn" OnClick="btnRemoveSubject_Click" />
         </div>
 
         <asp:Button ID="btnCheck" runat="server" Text="Check Requirements" CssClass="btn" OnClick="btnCheck_Click" />
+
         <asp:Label ID="lblResult" runat="server" CssClass="result-message" Text="" ForeColor="Red" />
     </form>
 </body>

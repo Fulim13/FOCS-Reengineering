@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
@@ -8,11 +7,21 @@ namespace SEMASGN.Client.MinReq
 {
     public partial class spm_req : System.Web.UI.Page
     {
+        private const int MaxSubjects = 12; // Maximum number of subjects allowed
+        private const string SubjectViewStateKey = "SubjectCount";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 LoadCourses();
+                ViewState[SubjectViewStateKey] = 2; 
+                AddSubjectFields(2); 
+            }
+            else
+            {
+                int subjectCount = (int)ViewState[SubjectViewStateKey];
+                AddSubjectFields(subjectCount);
             }
         }
 
@@ -31,7 +40,7 @@ namespace SEMASGN.Client.MinReq
                     ddlCourse.Items.Clear();
                     while (reader.Read())
                     {
-                        ddlCourse.Items.Add(new System.Web.UI.WebControls.ListItem(reader["name"].ToString(), reader["id"].ToString()));
+                        ddlCourse.Items.Add(new ListItem(reader["name"].ToString(), reader["id"].ToString()));
                     }
                     reader.Close();
                 }
@@ -52,7 +61,60 @@ namespace SEMASGN.Client.MinReq
             }
             else if (selectedCourse.Contains("Master") || selectedCourse.Contains("Phd"))
             {
-                subjectSection.Visible = false; 
+                subjectSection.Visible = false;
+            }
+        }
+
+        private void AddSubjectFields(int subjectCount)
+        {
+            subjectPlaceHolder.Controls.Clear();
+
+            for (int i = 1; i <= subjectCount; i++)
+            {
+                Label lblSubject = new Label { Text = $"Subject {i}:", ID = $"lblSubject{i}" };
+                TextBox txtSubject = new TextBox { ID = $"txtSubject{i}", CssClass = "subject-input", Width = Unit.Percentage(60) };
+
+                Label lblGrade = new Label { Text = $"Grade {i}:", ID = $"lblGrade{i}" };
+                TextBox txtGrade = new TextBox { ID = $"txtGrade{i}", CssClass = "grade-input", Width = Unit.Pixel(50) };
+
+                subjectPlaceHolder.Controls.Add(lblSubject);
+                subjectPlaceHolder.Controls.Add(txtSubject);
+                subjectPlaceHolder.Controls.Add(new Literal { Text = "<br />" });
+                subjectPlaceHolder.Controls.Add(lblGrade);
+                subjectPlaceHolder.Controls.Add(txtGrade);
+                subjectPlaceHolder.Controls.Add(new Literal { Text = "<br /><br />" });
+            }
+        }
+
+        protected void btnAddSubject_Click(object sender, EventArgs e)
+        {
+            int subjectCount = (int)ViewState[SubjectViewStateKey];
+
+            if (subjectCount < MaxSubjects)
+            {
+                subjectCount++;
+                ViewState[SubjectViewStateKey] = subjectCount;
+                AddSubjectFields(subjectCount);
+            }
+            else
+            {
+                lblResult.Text = "You can add up to 12 subjects only.";
+            }
+        }
+
+        protected void btnRemoveSubject_Click(object sender, EventArgs e)
+        {
+            int subjectCount = (int)ViewState[SubjectViewStateKey];
+
+            if (subjectCount > 2) 
+            {
+                subjectCount--;
+                ViewState[SubjectViewStateKey] = subjectCount;
+                AddSubjectFields(subjectCount);
+            }
+            else
+            {
+                lblResult.Text = "You must have at least 2 subjects.";
             }
         }
 
@@ -61,16 +123,23 @@ namespace SEMASGN.Client.MinReq
             if (IsValidInput())
             {
                 string selectedCourseID = ddlCourse.SelectedValue;
-                string subject1 = txtSubject1.Text;
-                string grade1 = txtGrade1.Text;
-                string subject2 = txtSubject2.Text;
-                string grade2 = txtGrade2.Text;
-                string subject3 = txtSubject3.Text;
-                string grade3 = txtGrade3.Text;
+
+                int subjectCount = (int)ViewState[SubjectViewStateKey];
+                var subjectsAndGrades = new (string Subject, string Grade)[subjectCount];
+
+                for (int i = 1; i <= subjectCount; i++)
+                {
+                    TextBox txtSubject = (TextBox)subjectPlaceHolder.FindControl($"txtSubject{i}");
+                    TextBox txtGrade = (TextBox)subjectPlaceHolder.FindControl($"txtGrade{i}");
+
+                    if (txtSubject != null && txtGrade != null)
+                    {
+                        subjectsAndGrades[i - 1] = (txtSubject.Text, txtGrade.Text);
+                    }
+                }
 
                 ProgrammeModel programme = GetProgrammeRequirements(selectedCourseID);
-
-                bool isEligible = CheckRequirements(programme, subject1, grade1, subject2, grade2, subject3, grade3);
+                bool isEligible = CheckRequirements(programme, subjectsAndGrades);
 
                 if (isEligible)
                 {
@@ -80,6 +149,7 @@ namespace SEMASGN.Client.MinReq
                 else
                 {
                     lblResult.Text = "Sorry, you do not meet the minimum requirements.";
+                    lblResult.ForeColor = System.Drawing.Color.Red;
                 }
             }
         }
@@ -119,21 +189,24 @@ namespace SEMASGN.Client.MinReq
             return null;
         }
 
-        private bool CheckRequirements(ProgrammeModel programme, string subject1, string grade1, string subject2, string grade2, string subject3, string grade3)
+        private bool CheckRequirements(ProgrammeModel programme, params (string Subject, string Grade)[] subjectsAndGrades)
         {
             if (programme != null)
             {
-                if (programme.LocalMinReq.Contains("STPM") && (grade1 == "C" || grade2 == "C" || grade3 == "C"))
+                foreach (var (subject, grade) in subjectsAndGrades)
                 {
-                    return true;
-                }
-                if (programme.LocalMinReq.Contains("UEC") && (grade1 == "B" || grade2 == "B" || grade3 == "B"))
-                {
-                    return true;
-                }
-                if (programme.LocalMinReq.Contains("CGPA") && float.TryParse(grade1, out float cgpa) && cgpa >= 2.5)
-                {
-                    return true;
+                    if (programme.LocalMinReq.Contains("STPM") && (grade == "C" || grade == "B" || grade == "A"))
+                    {
+                        return true;
+                    }
+                    if (programme.LocalMinReq.Contains("UEC") && (grade == "B" || grade == "A"))
+                    {
+                        return true;
+                    }
+                    if (programme.LocalMinReq.Contains("CGPA") && float.TryParse(grade, out float cgpa) && cgpa >= 2.5)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -141,16 +214,19 @@ namespace SEMASGN.Client.MinReq
 
         private bool IsValidInput()
         {
-            if (string.IsNullOrWhiteSpace(txtSubject1.Text) || string.IsNullOrWhiteSpace(txtGrade1.Text))
-            {
-                lblResult.Text = "Please fill out Subject 1 and Grade 1.";
-                return false;
-            }
+            int subjectCount = (int)ViewState[SubjectViewStateKey];
 
-            if (string.IsNullOrWhiteSpace(txtSubject2.Text) || string.IsNullOrWhiteSpace(txtGrade2.Text))
+            for (int i = 1; i <= subjectCount; i++)
             {
-                lblResult.Text = "Please fill out Subject 2 and Grade 2.";
-                return false;
+                TextBox txtSubject = (TextBox)subjectPlaceHolder.FindControl($"txtSubject{i}");
+                TextBox txtGrade = (TextBox)subjectPlaceHolder.FindControl($"txtGrade{i}");
+
+                if (txtSubject == null || txtGrade == null ||
+                    string.IsNullOrWhiteSpace(txtSubject.Text) || string.IsNullOrWhiteSpace(txtGrade.Text))
+                {
+                    lblResult.Text = $"Please fill out Subject {i} and Grade {i}.";
+                    return false;
+                }
             }
 
             return true;
