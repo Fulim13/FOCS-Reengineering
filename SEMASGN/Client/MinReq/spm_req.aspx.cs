@@ -7,7 +7,7 @@ namespace SEMASGN.Client.MinReq
 {
     public partial class spm_req : System.Web.UI.Page
     {
-        private const int MaxSubjects = 12; // Maximum number of subjects allowed
+        private const int MaxSubjects = 12;
         private const string SubjectViewStateKey = "SubjectCount";
 
         protected void Page_Load(object sender, EventArgs e)
@@ -15,8 +15,8 @@ namespace SEMASGN.Client.MinReq
             if (!IsPostBack)
             {
                 LoadCourses();
-                ViewState[SubjectViewStateKey] = 2; 
-                AddSubjectFields(2); 
+                ViewState[SubjectViewStateKey] = 2;
+                AddSubjectFields(2);
             }
             else
             {
@@ -54,14 +54,26 @@ namespace SEMASGN.Client.MinReq
         protected void ddlCourse_SelectedIndexChanged(object sender, EventArgs e)
         {
             string selectedCourse = ddlCourse.SelectedItem.Text;
+            bool isDegree = selectedCourse.Contains("Bachelor") || selectedCourse.Contains("Degree");
+            bool isPostgraduate = selectedCourse.Contains("Master") || selectedCourse.Contains("Phd");
 
-            if (selectedCourse.Contains("Foundation") || selectedCourse.Contains("Diploma") || selectedCourse.Contains("Bachelor") || selectedCourse.Contains("Degree"))
-            {
-                subjectSection.Visible = true;
-            }
-            else if (selectedCourse.Contains("Master") || selectedCourse.Contains("Phd"))
+            subjectSection.Visible = isDegree || !isPostgraduate;
+            cgpaSection.Visible = isPostgraduate;
+        }
+
+        protected void ddlRequirementType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedType = ddlRequirementType.SelectedValue;
+
+            if (selectedType == "TARUMT")
             {
                 subjectSection.Visible = false;
+                cgpaSection.Visible = true;
+            }
+            else
+            {
+                subjectSection.Visible = true;
+                cgpaSection.Visible = false;
             }
         }
 
@@ -106,7 +118,7 @@ namespace SEMASGN.Client.MinReq
         {
             int subjectCount = (int)ViewState[SubjectViewStateKey];
 
-            if (subjectCount > 2) 
+            if (subjectCount > 2)
             {
                 subjectCount--;
                 ViewState[SubjectViewStateKey] = subjectCount;
@@ -123,35 +135,120 @@ namespace SEMASGN.Client.MinReq
             if (IsValidInput())
             {
                 string selectedCourseID = ddlCourse.SelectedValue;
+                string requirementType = ddlRequirementType.SelectedValue;
+                var subjectsAndGrades = GetSubjectsAndGrades();
+                ProgrammeModel programme = GetProgrammeRequirements(selectedCourseID);
+                bool isEligible = false;
 
-                int subjectCount = (int)ViewState[SubjectViewStateKey];
-                var subjectsAndGrades = new (string Subject, string Grade)[subjectCount];
-
-                for (int i = 1; i <= subjectCount; i++)
+                if (programme != null)
                 {
-                    TextBox txtSubject = (TextBox)subjectPlaceHolder.FindControl($"txtSubject{i}");
-                    TextBox txtGrade = (TextBox)subjectPlaceHolder.FindControl($"txtGrade{i}");
-
-                    if (txtSubject != null && txtGrade != null)
+                    switch (requirementType)
                     {
-                        subjectsAndGrades[i - 1] = (txtSubject.Text, txtGrade.Text);
+                        case "STPM":
+                            isEligible = CheckSTPMRequirements(subjectsAndGrades);
+                            break;
+                        case "ALevel":
+                            isEligible = CheckALevelRequirements(subjectsAndGrades);
+                            break;
+                        case "UEC":
+                            isEligible = CheckUECRequirements(subjectsAndGrades);
+                            break;
+                        case "OtherIHL":
+                            isEligible = CheckOtherIHLRequirements(subjectsAndGrades);
+                            break;
+                        case "TARUMT":
+                            decimal userCGPA = Convert.ToDecimal(txtCGPA.Text);
+                            isEligible = CheckCGPARequirements(userCGPA, programme.LocalMinReq);
+                            break;
                     }
                 }
 
-                ProgrammeModel programme = GetProgrammeRequirements(selectedCourseID);
-                bool isEligible = CheckRequirements(programme, subjectsAndGrades);
+                lblResult.Text = isEligible
+                    ? "Congratulations! You meet the minimum requirements."
+                    : "Sorry, you do not meet the minimum requirements.";
+                lblResult.ForeColor = isEligible ? System.Drawing.Color.Green : System.Drawing.Color.Red;
+            }
+        }
 
-                if (isEligible)
+        private (string Subject, string Grade)[] GetSubjectsAndGrades()
+        {
+            int subjectCount = (int)ViewState[SubjectViewStateKey];
+            var subjectsAndGrades = new (string Subject, string Grade)[subjectCount];
+
+            for (int i = 1; i <= subjectCount; i++)
+            {
+                TextBox txtSubject = (TextBox)subjectPlaceHolder.FindControl($"txtSubject{i}");
+                TextBox txtGrade = (TextBox)subjectPlaceHolder.FindControl($"txtGrade{i}");
+
+                if (txtSubject != null && txtGrade != null)
                 {
-                    lblResult.Text = "Congratulations! You meet the minimum requirements.";
-                    lblResult.ForeColor = System.Drawing.Color.Green;
-                }
-                else
-                {
-                    lblResult.Text = "Sorry, you do not meet the minimum requirements.";
-                    lblResult.ForeColor = System.Drawing.Color.Red;
+                    subjectsAndGrades[i - 1] = (txtSubject.Text, txtGrade.Text);
                 }
             }
+
+            return subjectsAndGrades;
+        }
+
+        private bool CheckSTPMRequirements((string Subject, string Grade)[] subjectsAndGrades)
+        {
+            int count = 0;
+            foreach (var (_, grade) in subjectsAndGrades)
+            {
+                if (grade == "C" || grade == "B" || grade == "A")
+                {
+                    count++;
+                    if (count >= 2) return true;
+                }
+            }
+            return false;
+        }
+
+        private bool CheckUECRequirements((string Subject, string Grade)[] subjectsAndGrades)
+        {
+            int count = 0;
+            foreach (var (_, grade) in subjectsAndGrades)
+            {
+                if (grade == "B" || grade == "A")
+                {
+                    count++;
+                    if (count >= 5) return true;
+                }
+            }
+            return false;
+        }
+
+        private bool CheckALevelRequirements((string Subject, string Grade)[] subjectsAndGrades)
+        {
+            int count = 0;
+            foreach (var (_, grade) in subjectsAndGrades)
+            {
+                if (grade == "D" || grade == "C" || grade == "B" || grade == "A")
+                {
+                    count++;
+                    if (count >= 2) return true;
+                }
+            }
+            return false;
+        }
+
+        private bool CheckOtherIHLRequirements((string Subject, string Grade)[] subjectsAndGrades)
+        {
+            // Assuming subjectsAndGrades represent relevant subjects with CGPA
+            foreach (var (_, grade) in subjectsAndGrades)
+            {
+                if (float.TryParse(grade, out float cgpa) && cgpa >= 2.5)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool CheckCGPARequirements(decimal userCGPA, string minReq)
+        {
+            // Example parsing the required CGPA from minReq
+            decimal minCGPA = 2.5m;  // Replace with actual parsing logic if needed
+            return userCGPA >= minCGPA;
         }
 
         private ProgrammeModel GetProgrammeRequirements(string courseID)
@@ -187,29 +284,6 @@ namespace SEMASGN.Client.MinReq
                 }
             }
             return null;
-        }
-
-        private bool CheckRequirements(ProgrammeModel programme, params (string Subject, string Grade)[] subjectsAndGrades)
-        {
-            if (programme != null)
-            {
-                foreach (var (subject, grade) in subjectsAndGrades)
-                {
-                    if (programme.LocalMinReq.Contains("STPM") && (grade == "C" || grade == "B" || grade == "A"))
-                    {
-                        return true;
-                    }
-                    if (programme.LocalMinReq.Contains("UEC") && (grade == "B" || grade == "A"))
-                    {
-                        return true;
-                    }
-                    if (programme.LocalMinReq.Contains("CGPA") && float.TryParse(grade, out float cgpa) && cgpa >= 2.5)
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
         }
 
         private bool IsValidInput()

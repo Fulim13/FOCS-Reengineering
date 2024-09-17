@@ -79,6 +79,10 @@
             font-weight: bold;
             margin-top: 20px;
         }
+
+        #cgpaSection {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -91,13 +95,27 @@
             </asp:DropDownList>
         </div>
 
+        <div>
+            <label for="ddlRequirementType">Select Requirement Type:</label>
+            <asp:DropDownList ID="ddlRequirementType" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlRequirementType_SelectedIndexChanged">
+                <asp:ListItem Text="STPM" Value="STPM" />
+                <asp:ListItem Text="A Level" Value="ALevel" />
+                <asp:ListItem Text="UEC" Value="UEC" />
+                <asp:ListItem Text="Other IHL" Value="OtherIHL" />
+                <asp:ListItem Text="TARUMT/TAR UC" Value="TARUMT" />
+            </asp:DropDownList>
+        </div>
+
         <div id="subjectSection" runat="server" visible="false">
             <label>Subjects and Grades:</label>
-
             <asp:PlaceHolder ID="subjectPlaceHolder" runat="server"></asp:PlaceHolder>
-
             <asp:Button ID="btnAddSubject" runat="server" Text="Add More Subject" CssClass="btn" OnClick="btnAddSubject_Click" />
             <asp:Button ID="btnRemoveSubject" runat="server" Text="Remove Last Subject" CssClass="remove-btn" OnClick="btnRemoveSubject_Click" />
+        </div>
+
+        <div id="cgpaSection" runat="server" visible="false">
+            <label for="txtCGPA">Enter CGPA:</label>
+            <asp:TextBox ID="txtCGPA" runat="server" CssClass="grade-input"></asp:TextBox>
         </div>
 
         <asp:Button ID="btnCheck" runat="server" Text="Check Requirements" CssClass="btn" OnClick="btnCheck_Click" />

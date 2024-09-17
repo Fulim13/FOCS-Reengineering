@@ -33,6 +33,15 @@ namespace SEMASGN.Client.MinReq
         protected global::System.Web.UI.WebControls.DropDownList ddlCourse;
 
         /// <summary>
+        /// ddlRequirementType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRequirementType;
+
+        /// <summary>
         /// subjectSection control.
         /// </summary>
         /// <remarks>
@@ -67,6 +76,24 @@ namespace SEMASGN.Client.MinReq
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnRemoveSubject;
+
+        /// <summary>
+        /// cgpaSection control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl cgpaSection;
+
+        /// <summary>
+        /// txtCGPA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCGPA;
 
         /// <summary>
         /// btnCheck control.
