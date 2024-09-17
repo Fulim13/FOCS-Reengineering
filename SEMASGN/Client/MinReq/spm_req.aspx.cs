@@ -16,7 +16,6 @@ namespace SEMASGN.Client.MinReq
             }
         }
 
-        // Load the courses from the database into the dropdown list
         private void LoadCourses()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
@@ -47,21 +46,18 @@ namespace SEMASGN.Client.MinReq
         {
             string selectedCourse = ddlCourse.SelectedItem.Text;
 
-            // Show input fields for subjects and grades based on the course type
             if (selectedCourse.Contains("Foundation") || selectedCourse.Contains("Diploma") || selectedCourse.Contains("Bachelor") || selectedCourse.Contains("Degree"))
             {
                 subjectSection.Visible = true;
             }
             else if (selectedCourse.Contains("Master") || selectedCourse.Contains("Phd"))
             {
-                subjectSection.Visible = false; // Hide if it is a higher-level degree
+                subjectSection.Visible = false; 
             }
         }
 
-        // Check if the user meets the minimum requirements
         protected void btnCheck_Click(object sender, EventArgs e)
         {
-            // Ensure validation before proceeding
             if (IsValidInput())
             {
                 string selectedCourseID = ddlCourse.SelectedValue;
@@ -88,7 +84,6 @@ namespace SEMASGN.Client.MinReq
             }
         }
 
-        // Get programme requirements from the database
         private ProgrammeModel GetProgrammeRequirements(string courseID)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
@@ -124,12 +119,10 @@ namespace SEMASGN.Client.MinReq
             return null;
         }
 
-        // Check if the user's input meets the minimum requirements
         private bool CheckRequirements(ProgrammeModel programme, string subject1, string grade1, string subject2, string grade2, string subject3, string grade3)
         {
             if (programme != null)
             {
-                // Simple grade comparison logic
                 if (programme.LocalMinReq.Contains("STPM") && (grade1 == "C" || grade2 == "C" || grade3 == "C"))
                 {
                     return true;
@@ -146,7 +139,6 @@ namespace SEMASGN.Client.MinReq
             return false;
         }
 
-        // Validation method to ensure all fields are filled
         private bool IsValidInput()
         {
             if (string.IsNullOrWhiteSpace(txtSubject1.Text) || string.IsNullOrWhiteSpace(txtGrade1.Text))
@@ -164,7 +156,6 @@ namespace SEMASGN.Client.MinReq
             return true;
         }
 
-        // ProgrammeModel class to store programme data
         public class ProgrammeModel
         {
             public string Id { get; set; }
