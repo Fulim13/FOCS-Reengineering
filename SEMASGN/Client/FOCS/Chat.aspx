@@ -18,8 +18,8 @@
   <!-- <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" /> -->
 </head>
 <link rel="stylesheet" type="text/css" href="./styles/styles.css" />
-<body >
-  <div id="app" class="h-screen">
+<body>
+  <div id="app" class="h-screen 2xl:px-96 xl:px-48 lg:px-24 md:px-12 sm:px-0">
     <div class="heading">
       <div class="heading-inner">
         <div class="photo-container"><div class="photo">JM</div></div>
