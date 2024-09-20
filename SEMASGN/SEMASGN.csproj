@@ -69,12 +69,38 @@
     <Content Include="image\focs.jpg" />
     <Content Include="image\home1.jpg" />
     <Content Include="image\tarumt-logo.png" />
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\FOCS.mdf" />
+    <Content Include="App_Data\FOCS_log.ldf">
+      <DependentUpon>FOCS.mdf</DependentUpon>
+    </Content>
+    <Content Include="Client\FOCS\Chat.aspx" />
+    <Content Include="Client\FOCS\icons\arrow-down.svg" />
+    <Content Include="Client\FOCS\icons\arrow-up.svg" />
+    <Content Include="Client\FOCS\icons\attachment.svg" />
+    <Content Include="Client\FOCS\icons\checkmark.svg" />
+    <Content Include="Client\FOCS\icons\copy.svg" />
+    <Content Include="Client\FOCS\icons\time.svg" />
+    <Content Include="Client\FOCS\js\scripts.js" />
+    <Content Include="Client\FOCS\styles\styles.css" />
+    <Content Include="Client\Home\WebForm1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\Home\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\FOCS\Chat.aspx.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\FOCS\Chat.aspx.designer.cs">
+      <DependentUpon>Chat.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\Home\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
@@ -90,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\MasterPage\MasterPage.Master" />
+    <Content Include="Client\FOCS\data\messages.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -98,9 +125,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -116,7 +141,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50358</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44392/</IISUrl>
+          <IISUrl>http://localhost:44392/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

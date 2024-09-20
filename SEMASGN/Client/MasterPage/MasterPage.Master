@@ -31,6 +31,10 @@
                 Home
             </asp:HyperLink>
 
+            <asp:HyperLink ID="HyperLinkChat" class="cursor" runat="server" NavigateUrl="~/Client/FOCS/Chat.aspx" CssClass="text-white hover:text-gray-300">
+                Chat
+            </asp:HyperLink>
+
                     <asp:HyperLink ID="HyperLinkAbout" runat="server" NavigateUrl="~/about" CssClass="text-white hover:text-gray-300">
                 About Us
             </asp:HyperLink>
