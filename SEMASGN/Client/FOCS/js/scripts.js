@@ -197,8 +197,39 @@ document.addEventListener("DOMContentLoaded", function () {
     updateAgentStatus();
     checkTextareaEmpty(); // Initial check to see if the textarea is empty
 
+    const messagesContainer = document.getElementById("messages-dedicated-agent");
+    const loadingIndicator = document.createElement('div');
+    loadingIndicator.className = 'message loading-indicator';
+    loadingIndicator.innerHTML = `
+        <div class="loading-indicator-content">
+            <div class="loading-dots"><div></div><div></div><div></div></div>
+            <span class="loading-text">Response is generating</span>
+        </div>
+    `;
+    loadingIndicator.style.display = 'none';
+
+    // Function to show loading indicator
+    function showLoadingIndicator() {
+        loadingIndicator.style.display = 'block';
+        messagesContainer.appendChild(loadingIndicator); // Move indicator to the bottom
+        textarea.disabled = true;
+        submitButton.disabled = true;
+        scrollToLatestMessage();
+    }
+
+    // Function to hide loading indicator
+    function hideLoadingIndicator() {
+        loadingIndicator.style.display = 'none';
+        if (loadingIndicator.parentNode === messagesContainer) {
+            messagesContainer.removeChild(loadingIndicator);
+        }
+        textarea.disabled = false;
+        checkTextareaEmpty(); // Re-enable submit button if there's text
+    }
+
     // New function to send message to backend
     async function sendMessageToBackend(message) {
+        showLoadingIndicator();
         try {
             const response = await fetch('http://fulim.social:8000/test/', {
                 method: 'POST',
@@ -213,11 +244,13 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             const data = await response.json();
-            console.log(data)
+            console.log(data);
             return data.data;
         } catch (error) {
             console.error('Error:', error);
             return 'Sorry, there was an error processing your request.';
+        } finally {
+            hideLoadingIndicator();
         }
     }
 
@@ -259,6 +292,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </div>
         `;
+
+            // Remove loading indicator if it exists
+            if (loadingIndicator.parentNode === messagesContainer) {
+                messagesContainer.removeChild(loadingIndicator);
+            }
 
             messagesContainer.appendChild(messageElement);
 
@@ -321,18 +359,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to send predefined questions to the backend
     async function sendPredefinedQuestion(question) {
-        // Add the selected question to the chat as if the user sent it
         addMessageToChat(question, true);
         textarea.value = '';
         autoGrowingTextarea();
         checkTextareaEmpty();
 
-        // Send the question to the backend
+        showLoadingIndicator();
         const botResponse = await sendMessageToBackend(question);
+        hideLoadingIndicator();
 
-        // Add the bot's response to the chat
         addMessageToChat(botResponse, false);
-
         scrollToLatestMessage();
     }
 
@@ -346,18 +382,16 @@ document.addEventListener("DOMContentLoaded", function () {
         submitButton.addEventListener("click", async function () {
             const userMessage = textarea.value.trim();
             if (userMessage) {
-                // Add user message to the chat
                 addMessageToChat(userMessage, true);
                 textarea.value = '';
                 autoGrowingTextarea();
                 checkTextareaEmpty();
 
-                // Send message to backend and get response
+                showLoadingIndicator();
                 const botResponse = await sendMessageToBackend(userMessage);
+                hideLoadingIndicator();
 
-                // Add bot response to the chat
                 addMessageToChat(botResponse, false);
-
                 scrollToLatestMessage();
             }
         });
