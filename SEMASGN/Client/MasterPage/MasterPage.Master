@@ -9,15 +9,149 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.2-web/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-        </div>
-    </form>
+    <!-- Header -->
+    <header class="w-full">
+        <!-- Navbar -->
+        <nav class="bg-transparent w-full z-50 bg-yellow-500">
+            <div class="container mx-auto flex justify-between items-center py-4">
+                <!-- TARUMT Logo -->
+                <a href="/" class="flex items-center">
+                    <asp:Image ID="Image1" runat="server" ImageUrl="~/image/tarumt-logo.png" alt="TARUMT Logo" class="h-12" />
+                </a>
+
+                <!-- Links -->
+                <div class="hidden md:flex space-x-8">
+                    <asp:HyperLink ID="HyperLinkHome" class="cursor" runat="server" NavigateUrl="~/Client/Home/HomePage.aspx" CssClass="text-white hover:text-gray-300">
+                Home
+            </asp:HyperLink>
+
+                    <asp:HyperLink ID="HyperLinkAbout" runat="server" NavigateUrl="~/about" CssClass="text-white hover:text-gray-300">
+                About Us
+            </asp:HyperLink>
+
+                    <asp:HyperLink ID="HyperLinkProgrammes" runat="server" NavigateUrl="~/programmes" CssClass="text-white hover:text-gray-300">
+                Programmes
+            </asp:HyperLink>
+
+                    <asp:HyperLink ID="HyperLinkFacilities" runat="server" NavigateUrl="~/facilities" CssClass="text-white hover:text-gray-300">
+                Facilities
+            </asp:HyperLink>
+
+                    <asp:HyperLink ID="HyperLinkResearch" runat="server" NavigateUrl="~/research" CssClass="text-white hover:text-gray-300">
+                Research
+            </asp:HyperLink>
+
+                    <asp:HyperLink ID="HyperLinkContact" runat="server" NavigateUrl="~/contact" CssClass="text-white hover:text-gray-300">
+                Contact Us
+            </asp:HyperLink>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id="ip-address-section" class="bg-white py-3 text-center">
+        <h2 class="text-2xl font-bold">Your IP Address: <span id="ip"></span>(<span id="country"></span>)</h2>
+    </div>
+       <!--  Your Content -->
+   <div class="min-h-svh">
+       <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+       </asp:ContentPlaceHolder>
+   </div>
+
+   <!-- Footer -->
+   <footer class="bg-yellow-500 py-8">
+       <div class="container mx-auto flex flex-col items-center justify-between md:flex-row">
+
+           <!-- Left Section: Logo and Text -->
+           <div class="flex flex-col items-center md:items-start text-white mb-4 md:mb-0">
+               <div class="flex items-center">
+                   <!-- TARUMT Logo -->
+                   <asp:Image ID="Image2" runat="server" ImageUrl="~/image/tarumt-logo.png" alt="TARUMT Logo" class="h-16 mr-4" />
+                   <div>
+                       <p class="text-lg font-bold">Tunku Abdul Rahman University of Management and Technology</p>
+                       <p>Registration No. DU058(W)</p>
+                       <p>Wholly owned by the TARC Education Foundation</p>
+                       <p>(Co. Reg. No.: 201301003979 (1033820-M))</p>
+                   </div>
+               </div>
+           </div>
+
+           <!-- Right Section: Awards and Social Media Links -->
+           <div class="flex flex-col items-center md:items-end">
+               <div class="flex space-x-4 mb-4">
+                   <!-- Awards -->
+                   <img src="/path-to-award1.png" alt="Award 1" class="h-12">
+                   <img src="/path-to-award2.png" alt="Award 2" class="h-12">
+                   <img src="/path-to-award3.png" alt="Award 3" class="h-12">
+               </div>
+
+               <!-- Social Media Icons -->
+               <div class="flex space-x-4">
+                   <a href="#" class="text-white hover:text-gray-300">
+                       <i class="fab fa-facebook-square text-3xl"></i>
+                   </a>
+                   <a href="#" class="text-white hover:text-gray-300">
+                       <i class="fab fa-youtube-square text-3xl"></i>
+                   </a>
+                   <a href="#" class="text-white hover:text-gray-300">
+                       <i class="fab fa-instagram-square text-3xl"></i>
+                   </a>
+                   <a href="#" class="text-white hover:text-gray-300">
+                       <i class="fab fa-whatsapp-square text-3xl"></i>
+                   </a>
+               </div>
+           </div>
+
+       </div>
+   </footer>
+   <script type="text/javascript">
+       (function (d, t) {
+           var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+           v.onload = function () {
+               window.voiceflow.chat.load({
+                   verify: { projectID: '66e93a30efd94c0c770ff07e' },
+                   url: 'https://general-runtime.voiceflow.com',
+                   versionID: 'production'
+               });
+           }
+           v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+       })(document, 'script');
+   </script>
+
+    <!-- IP Tracking Script -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.getJSON('https://ipapi.co/json/', function (data) {
+                $("#ip").text(data.ip);
+                $('#isp').text(data.org);
+                $('#country').text(data.country_name);
+                $('#city').text(data.city);
+                $("#gmaps").attr("src", "https://www.google.com/maps?q=" + data.latitude + "," + data.longitude + "&output=embed");
+            }).fail(function () {
+                alert("Error retrieving IP information.");
+            });
+        });
+    </script>
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
