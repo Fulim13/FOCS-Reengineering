@@ -22,10 +22,10 @@
   <div id="app" class="h-screen">
     <div class="heading">
       <div class="heading-inner">
-        <div class="photo-container"><div class="photo">AS</div></div>
+        <div class="photo-container"><div class="photo">JM</div></div>
         <div class="info">
-          <div class="name">Ava Sterling</div>
-          <div class="title">Curator of ThriveTrack Program</div>
+          <div class="name">FOCS</div>
+          <div class="title">Jamie</div>
           <div id="agentAvailability"></div>
         </div>
       </div>
@@ -40,10 +40,6 @@
         </button>
         <div class="fade"></div>
         <div class="footer-inner">
-          <div class="file-upload">
-            <label for="file"><img src="./icons/attachment.svg" /></label>
-            <input id="file" type="file" />
-          </div>
           <div class="new-message">
             <textarea
               rows="1"
@@ -60,6 +56,6 @@
       </div>
     </div>
   </div>
-  <script src="./js/scripts.js"></script>
+  <script defer src="./js/scripts.js"></script>
 </body>
 </asp:Content>

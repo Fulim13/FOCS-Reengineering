@@ -272,6 +272,74 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    // Function to add the introduction message and buttons
+    function addIntroductionAndButtons() {
+        const introMessage = "Hello! I'm Jamie, your assistant from TARUMT. I'm here to assist you with any questions you may have about FOCS university courses. How may I assist you today?";
+
+        // Add the introduction message to the chat
+        addMessageToChat(introMessage, false);
+
+        // Add the buttons with questions
+        const messagesContainer = document.getElementById("messages-dedicated-agent");
+        if (messagesContainer) {
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'message buttons';
+
+            buttonContainer.innerHTML = `
+            <button id="question1" type="button" class="rounded-md border border-transparent py-2 px-4 flex items-center text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 ml-1.5">
+                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+                &nbsp; &nbsp;
+                What is the Minimum Requirement for Diploma In Computer Science ?
+            </button>
+            <button id="question2" type="button" class="rounded-md border border-transparent py-2 px-4 flex items-center text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 ml-1.5">
+                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+                &nbsp; &nbsp;
+                What is the Fee of Bachelor of Degree in Software Engineering ?
+            </button>
+            <button id="question3" type="button" class="rounded-md border border-transparent py-2 px-4 flex items-center text-center text-sm transition-all text-slate-600 hover:bg-slate-100 focus:bg-slate-100 active:bg-slate-100 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 ml-1.5">
+                <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                </svg>
+                &nbsp; &nbsp;
+                What is the Intake month for Foundation in Computing ?
+            </button>
+        `;
+
+            messagesContainer.appendChild(buttonContainer);
+
+            // Attach click events to the buttons
+            document.getElementById('question1').addEventListener('click', () => sendPredefinedQuestion('What is the Minimum Requirement for Diploma In Computer Science ?'));
+            document.getElementById('question2').addEventListener('click', () => sendPredefinedQuestion('What is the Fee of Bachelor of Degree in Software Engineering ?'));
+            document.getElementById('question3').addEventListener('click', () => sendPredefinedQuestion('What is the Intake month for Foundation in Computing ?'));
+        }
+    }
+
+
+    // Function to send predefined questions to the backend
+    async function sendPredefinedQuestion(question) {
+        // Add the selected question to the chat as if the user sent it
+        addMessageToChat(question, true);
+        textarea.value = '';
+        autoGrowingTextarea();
+        checkTextareaEmpty();
+
+        // Send the question to the backend
+        const botResponse = await sendMessageToBackend(question);
+
+        // Add the bot's response to the chat
+        addMessageToChat(botResponse, false);
+
+        scrollToLatestMessage();
+    }
+
+    // Add the introduction and buttons on page load
+    addIntroductionAndButtons();
+
+
 
     // Update the submit button click event
     if (submitButton) {
@@ -296,7 +364,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // Initial message display (if needed)
-    displayMessages([]);  // You can pass an empty array or remove this if not needed
+    //displayMessages([]);  // You can pass an empty array or remove this if not needed
 
     // Render messages (modified to work with the new addMessageToChat function)
     function displayMessages(data) {
