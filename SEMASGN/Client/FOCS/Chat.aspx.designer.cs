@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SEMASGN.Client.Home
+namespace SEMASGN.Client.Chat
 {
 
 
-    public partial class WebForm1
+    public partial class Chat
     {
     }
 }
