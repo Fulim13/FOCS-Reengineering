@@ -95,8 +95,8 @@ namespace SEMASGN.Client.Comparison
 
                                 lblID.Text = string.IsNullOrEmpty(reader["id"].ToString()) ? "-" : reader["id"].ToString();
                                 lblDescription.Text = string.IsNullOrEmpty(reader["description"].ToString()) ? "-" : reader["description"].ToString();
-                                lblLocalFees.Text = string.IsNullOrEmpty(reader["localFees"].ToString()) ? "-" : reader["localFees"].ToString();
-                                lblInternationalFees.Text = string.IsNullOrEmpty(reader["internationalFees"].ToString()) ? "-" : reader["internationalFees"].ToString();
+                                lblLocalFees.Text = string.IsNullOrEmpty(reader["localFees"].ToString()) ? "-" : "RM " + reader["localFees"].ToString();
+                                lblInternationalFees.Text = string.IsNullOrEmpty(reader["internationalFees"].ToString()) ? "-" : "RM " + reader["internationalFees"].ToString();
 
                                 // Deserialize JSON for local minimum requirements and append localSpecificSubjectReq (if exists)
                                 string localMinReqJson = reader["localMinReq"].ToString();
@@ -127,8 +127,8 @@ namespace SEMASGN.Client.Comparison
                                 string mainCourse = reader["mainCourse"].ToString();
                                 string mpuCourses = reader["mpu"].ToString();
                                 lblMainCourse.Text = FormatCourses(mainCourse, mpuCourses); lblCareerProspects.Text = string.IsNullOrEmpty(reader["careerProspects"].ToString()) ? "-" : FormatCareerProspects(reader["careerProspects"].ToString());
-                                lblPTDuration.Text = string.IsNullOrEmpty(reader["ptDuration"].ToString()) ? "-" : reader["ptDuration"].ToString();
-                                lblFTDuration.Text = string.IsNullOrEmpty(reader["ftDuration"].ToString()) ? "-" : reader["ftDuration"].ToString();
+                                lblPTDuration.Text = string.IsNullOrEmpty(reader["ptDuration"].ToString()) ? "-" : reader["ptDuration"].ToString() + " year(s)";
+                                lblFTDuration.Text = string.IsNullOrEmpty(reader["ftDuration"].ToString()) ? "-" : reader["ftDuration"].ToString() + " year(s)";
                                 lblType.Text = string.IsNullOrEmpty(reader["type"].ToString()) ? "-" : reader["type"].ToString();
                                 lblCampus.Text = string.IsNullOrEmpty(reader["campus"].ToString()) ? "-" : reader["campus"].ToString();
                                 lblIntake.Text = string.IsNullOrEmpty(reader["intake"].ToString()) ? "-" : reader["intake"].ToString();
@@ -142,14 +142,19 @@ namespace SEMASGN.Client.Comparison
                 }
             }
         }
+        private string FormatCareerProspects(string career)
+        {
+            string formattedCareer = string.IsNullOrEmpty(career) ? "-" : string.Join("<br/>", career.Split(',').Select(c => c.Trim()));
 
+            return formattedCareer;
+        }
         private string FormatCourses(string mainCourse, string mpuCourses)
         {
             string formattedMainCourse = string.IsNullOrEmpty(mainCourse) ? "-" : string.Join("<br/>", mainCourse.Split(',').Select(c => c.Trim()));
 
             if (!string.IsNullOrEmpty(mpuCourses))
             {
-                formattedMainCourse += "<br/><br/>MPU Courses:<br/>" + string.Join("<br/>", mpuCourses.Split(',').Select(c => c.Trim()));
+                formattedMainCourse += "<br/><br/><span class=\"font-bold\">MPU Courses:</span><br/>" + string.Join("<br/>", mpuCourses.Split(',').Select(c => c.Trim()));
             }
 
             return formattedMainCourse;
@@ -164,7 +169,7 @@ namespace SEMASGN.Client.Comparison
             if (!string.IsNullOrEmpty(specificSubjectReq))
             {
                 var specificReqs = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(specificSubjectReq);
-                formatted += "<br/><br/>Specific Subject Requirement:<br/>" + string.Join("<br/>", specificReqs.Select(kv => $"{kv.Key}: {kv.Value}"));
+                formatted += "<br/><br/><span class=\"font-bold\">Specific Subject Requirement:</span><br/>" + string.Join("<br/>", specificReqs.Select(kv => $"{kv.Key}: {kv.Value}"));
             }
 
             return formatted;
@@ -209,10 +214,6 @@ namespace SEMASGN.Client.Comparison
             }
         }
 
-        // New helper function to format career prospects
-        private string FormatCareerProspects(string careerProspects)
-        {
-            return string.Join("<br/>", careerProspects.Split(',').Select(c => c.Trim()));
-        }
+        
     }
 }
