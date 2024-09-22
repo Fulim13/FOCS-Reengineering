@@ -11,7 +11,7 @@ namespace SEMASGN.Client.Comparison
 {
 
 
-    public partial class WebForm1
+    public partial class Comparison
     {
 
         /// <summary>

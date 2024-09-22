@@ -1,9 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Compare.aspx.cs" Inherits="SEMASGN.Client.Comparison.WebForm1" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Client/MasterPage/MasterPage.Master" AutoEventWireup="true" CodeBehind="Comparison.aspx.cs" Inherits="SEMASGN.Client.Comparison.Comparison" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="w-[80%] min-h-80 border border-black m-auto my-10 text-justify">
+        <div class="w-[80%] min-h-80 border border-black m-auto my-10 text-justify">
         <!-- Programme -->
         <div class="w-[100%] min-h-10 border-b border-black flex">
             <div class="w-[20%] min-h-full flex justify-center  p-2">
@@ -214,4 +213,5 @@
         </div>
 
     </div>
+
 </asp:Content>

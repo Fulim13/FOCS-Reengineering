@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace SEMASGN.Client.Comparison
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Comparison : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -19,28 +19,27 @@ namespace SEMASGN.Client.Comparison
                 // Load the dropdown lists with programme data on first load.
                 LoadProgrammes();
             }
-
         }
 
 
         protected void ddlProgramme1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string programmeId = ddlProgramme1.SelectedValue;
-            
-            if(ddlProgramme1.SelectedIndex == 0)
+
+            if (ddlProgramme1.SelectedIndex == 0)
             {
                 lblProgramme1ID.Text = "";
                 lblProgramme1Description.Text = "";
-                lblProgramme1LocalFees.Text = ""; 
+                lblProgramme1LocalFees.Text = "";
                 lblProgramme1InternationalFees.Text = "";
                 lblProgramme1MainCourse.Text = "";
                 lblProgramme1LocalMinReq.Text = "";
-                lblProgramme1InternationalMinReq.Text = ""; 
+                lblProgramme1InternationalMinReq.Text = "";
                 lblProgramme1CareerProspects.Text = "";
-                lblProgramme1PTDuration.Text = ""; 
+                lblProgramme1PTDuration.Text = "";
                 lblProgramme1FTDuration.Text = "";
                 lblProgramme1Type.Text = "";
-                lblProgramme1Campus.Text = ""; 
+                lblProgramme1Campus.Text = "";
                 lblProgramme1Intake.Text = "";
             }
             RetrieveProgrammeDetails(programmeId, lblProgramme1ID, lblProgramme1Description, lblProgramme1LocalFees, lblProgramme1InternationalFees,
@@ -176,7 +175,7 @@ namespace SEMASGN.Client.Comparison
         private void LoadProgrammes()
         {
             // Get connection string from Web.config
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
