@@ -7,38 +7,47 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SEMASGN.Client.Home
+namespace SEMASGN.Client.Programme
 {
 
 
-    public partial class WebForm1
+    public partial class Programme
     {
 
         /// <summary>
-        /// Image3 control.
+        /// FoundationRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image3;
+        protected global::System.Web.UI.WebControls.Repeater FoundationRepeater;
 
         /// <summary>
-        /// Image1 control.
+        /// DiplomaRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::System.Web.UI.WebControls.Repeater DiplomaRepeater;
 
         /// <summary>
-        /// Image2 control.
+        /// BachelorRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image2;
+        protected global::System.Web.UI.WebControls.Repeater BachelorRepeater;
+
+        /// <summary>
+        /// PostgraduateRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater PostgraduateRepeater;
     }
 }

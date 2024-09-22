@@ -10,13 +10,14 @@
     <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.1-web/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/eliyantosarage/font-awesome-pro@main/fontawesome-pro-6.5.2-web/css/all.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <!-- Header -->
     <header class="w-full">
+        <div class="w-full" style="display: none" id="google_translate_element"></div>
+
         <!-- Navbar -->
         <nav class="bg-transparent w-full z-50 bg-yellow-500">
             <div class="container mx-auto flex justify-between items-center py-4">
@@ -29,31 +30,24 @@
                 <div class="hidden md:flex space-x-8">
                     <asp:HyperLink ID="HyperLinkHome" class="cursor" runat="server" NavigateUrl="~/Client/Home/HomePage.aspx" CssClass="text-white hover:text-gray-300">
                 Home
-            </asp:HyperLink>
+                    </asp:HyperLink>
 
-            <asp:HyperLink ID="HyperLinkChat" class="cursor" runat="server" NavigateUrl="~/Client/FOCS/Chat.aspx" CssClass="text-white hover:text-gray-300">
+                    <asp:HyperLink ID="HyperLinkChat" class="cursor" runat="server" NavigateUrl="~/Client/FOCS/Chat.aspx" CssClass="text-white hover:text-gray-300">
                 Chat
-            </asp:HyperLink>
+                    </asp:HyperLink>
 
+                    <asp:HyperLink ID="HyperLinkProgrammes" runat="server" NavigateUrl="~/Client/Programme/Programme.aspx" CssClass="text-white hover:text-gray-300">
+                Programmes
+                    </asp:HyperLink>
+                    
                     <asp:HyperLink ID="HyperLinkAbout" runat="server" NavigateUrl="~/about" CssClass="text-white hover:text-gray-300">
                 About Us
-            </asp:HyperLink>
+                    </asp:HyperLink>
 
-                    <asp:HyperLink ID="HyperLinkProgrammes" runat="server" NavigateUrl="~/programmes" CssClass="text-white hover:text-gray-300">
-                Programmes
-            </asp:HyperLink>
 
                     <asp:HyperLink ID="HyperLinkFacilities" runat="server" NavigateUrl="~/facilities" CssClass="text-white hover:text-gray-300">
                 Facilities
-            </asp:HyperLink>
-
-                    <asp:HyperLink ID="HyperLinkResearch" runat="server" NavigateUrl="~/research" CssClass="text-white hover:text-gray-300">
-                Research
-            </asp:HyperLink>
-
-                    <asp:HyperLink ID="HyperLinkContact" runat="server" NavigateUrl="~/contact" CssClass="text-white hover:text-gray-300">
-                Contact Us
-            </asp:HyperLink>
+                    </asp:HyperLink>
                 </div>
 
                 <div class="md:hidden">
@@ -66,89 +60,80 @@
             </div>
         </nav>
     </header>
-    <div id="ip-address-section" class="bg-white py-3 text-center">
-        <h2 class="text-2xl font-bold">Your IP Address: <span id="ip"></span>(<span id="country"></span>)</h2>
+    <div id="ip-address-section" class="bg-white py-2 text-center">
+        <h2 class="text-2xl font-bold">Your IP Address: <span id="ip"></span> (<span id="country"></span>)</h2>
     </div>
-       <!--  Your Content -->
-   <div class="min-h-svh">
-       <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-       </asp:ContentPlaceHolder>
-   </div>
+    <!--  Your Content -->
+    <div class="min-h-svh">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
 
-   <!-- Footer -->
-   <footer class="bg-yellow-500 py-8">
-       <div class="container mx-auto flex flex-col items-center justify-between md:flex-row">
+    <!-- Footer -->
+    <footer class="bg-yellow-500 py-8">
+        <div class="container mx-auto flex flex-col items-center justify-between md:flex-row">
 
-           <!-- Left Section: Logo and Text -->
-           <div class="flex flex-col items-center md:items-start text-white mb-4 md:mb-0">
-               <div class="flex items-center">
-                   <!-- TARUMT Logo -->
-                   <asp:Image ID="Image2" runat="server" ImageUrl="~/image/tarumt-logo.png" alt="TARUMT Logo" class="h-16 mr-4" />
-                   <div>
-                       <p class="text-lg font-bold">Tunku Abdul Rahman University of Management and Technology</p>
-                       <p>Registration No. DU058(W)</p>
-                       <p>Wholly owned by the TARC Education Foundation</p>
-                       <p>(Co. Reg. No.: 201301003979 (1033820-M))</p>
-                   </div>
-               </div>
-           </div>
+            <!-- Left Section: Logo and Text -->
+            <div class="flex flex-col items-center md:items-start text-white mb-4 md:mb-0">
+                <div class="flex items-center">
+                    <!-- TARUMT Logo -->
+                    <asp:Image ID="Image2" runat="server" ImageUrl="~/image/tarumt-logo.png" alt="TARUMT Logo" class="h-16 mr-4" />
+                    <div>
+                        <p class="text-lg font-bold">Tunku Abdul Rahman University of Management and Technology</p>
+                        <p>Registration No. DU058(W)</p>
+                        <p>Wholly owned by the TARC Education Foundation</p>
+                        <p>(Co. Reg. No.: 201301003979 (1033820-M))</p>
+                    </div>
+                </div>
+            </div>
 
-           <!-- Right Section: Awards and Social Media Links -->
-           <div class="flex flex-col items-center md:items-end">
-               <div class="flex space-x-4 mb-4">
-                   <!-- Awards -->
-                   <img src="/path-to-award1.png" alt="Award 1" class="h-12">
-                   <img src="/path-to-award2.png" alt="Award 2" class="h-12">
-                   <img src="/path-to-award3.png" alt="Award 3" class="h-12">
-               </div>
+            <!-- Right Section: Awards and Social Media Links -->
+            <div class="flex flex-col items-center md:items-end">
+                <div class="flex space-x-4 mb-4">
+                    <!-- Awards -->
+                    <img src="/path-to-award1.png" alt="Award 1" class="h-12">
+                    <img src="/path-to-award2.png" alt="Award 2" class="h-12">
+                    <img src="/path-to-award3.png" alt="Award 3" class="h-12">
+                </div>
 
-               <!-- Social Media Icons -->
-               <div class="flex space-x-4">
-                   <a href="#" class="text-white hover:text-gray-300">
-                       <i class="fab fa-facebook-square text-3xl"></i>
-                   </a>
-                   <a href="#" class="text-white hover:text-gray-300">
-                       <i class="fab fa-youtube-square text-3xl"></i>
-                   </a>
-                   <a href="#" class="text-white hover:text-gray-300">
-                       <i class="fab fa-instagram-square text-3xl"></i>
-                   </a>
-                   <a href="#" class="text-white hover:text-gray-300">
-                       <i class="fab fa-whatsapp-square text-3xl"></i>
-                   </a>
-               </div>
-           </div>
+                <!-- Social Media Icons -->
+                <div class="flex space-x-4">
+                    <a href="#" class="text-white hover:text-gray-300">
+                        <i class="fab fa-facebook-square text-3xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-gray-300">
+                        <i class="fab fa-youtube-square text-3xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-gray-300">
+                        <i class="fab fa-instagram-square text-3xl"></i>
+                    </a>
+                    <a href="#" class="text-white hover:text-gray-300">
+                        <i class="fab fa-whatsapp-square text-3xl"></i>
+                    </a>
+                </div>
+            </div>
 
-       </div>
-   </footer>
-   <script type="text/javascript">
-       (function (d, t) {
-           var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-           v.onload = function () {
-               window.voiceflow.chat.load({
-                   verify: { projectID: '66e93a30efd94c0c770ff07e' },
-                   url: 'https://general-runtime.voiceflow.com',
-                   versionID: 'production'
-               });
-           }
-           v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-       })(document, 'script');
-   </script>
+        </div>
+    </footer>
 
-    <!-- IP Tracking Script -->
+
+
     <script type="text/javascript">
-        $(document).ready(function () {
-            $.getJSON('https://ipapi.co/json/', function (data) {
-                $("#ip").text(data.ip);
-                $('#isp').text(data.org);
-                $('#country').text(data.country_name);
-                $('#city').text(data.city);
-                $("#gmaps").attr("src", "https://www.google.com/maps?q=" + data.latitude + "," + data.longitude + "&output=embed");
-            }).fail(function () {
-                alert("Error retrieving IP information.");
-            });
-        });
+        (function (d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function () {
+                window.voiceflow.chat.load({
+                    verify: { projectID: '66e93a30efd94c0c770ff07e' },
+                    url: 'https://general-runtime.voiceflow.com',
+                    versionID: 'production'
+                });
+            }
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+            v.type = "text/javascript";
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
     </script>
+
     <script>
         const menuToggle = document.getElementById('menu-toggle');
         const navMenu = document.getElementById('nav-menu');
@@ -157,5 +142,101 @@
             navMenu.classList.toggle('hidden');
         });
     </script>
+
+    <script type="text/javascript">
+        // Function to observe when the voiceflow-chat widget gets added to the DOM
+        function observeWidgetAddition() {
+            const observer = new MutationObserver(function (mutations) {
+                mutations.forEach(function (mutation) {
+                    mutation.addedNodes.forEach(function (node) {
+                        // Check if the added node is the voiceflow chat widget by id
+                        if (node.id === 'voiceflow-chat') {
+                            node.classList.add('notranslate'); // Add 'notranslate' class to the widget
+                        }
+                    });
+                });
+            });
+
+            // Observe the entire document for changes
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+            });
+        }
+
+        // Call the observer when the page is fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            observeWidgetAddition();
+        });
+</script>
+
+    <!-- Combined IP Tracking and Google Translate Script -->
+    <!-- Combined IP Tracking and Google Translate Script -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Fetch user's IP and country data from ipapi.co
+        $.getJSON('https://ipapi.co/json/', function (ipData) {
+            // Update IP tracking info in the DOM
+            $("#ip").text(ipData.ip);
+            $('#country').text(ipData.country_name);
+
+            // Now use the IP data for the Google Translate logic
+            var userCountryCode = ipData.country_code || 'en'; // Default to 'en'
+            var targetLanguage = 'en';  // Default language is English
+
+            // Load country and language mapping from your JSON file
+            $.getJSON('../MasterPage/countries.json', function (countryData) {
+                // Find the corresponding language for the user's country code
+                var country = countryData.find(function (item) {
+                    return item.code === userCountryCode;
+                });
+
+                // Use the first language from the country data if found
+                if (country && country.languages && country.languages.length > 0) {
+                    targetLanguage = country.languages[0];
+                }
+
+                // Fallback to English if targetLanguage is not valid or undefined
+                if (!targetLanguage || targetLanguage === 'ab') {  // 'ab' is the code for Abkhaz
+                    targetLanguage = 'en';  // Default fallback to English
+                }
+
+                // Skip translation prompt if the user is from Malaysia (MY)
+                if (userCountryCode === 'MY') {
+                    return; // Exit and don't show prompt for Malaysia
+                }
+
+                googleTranslateElementInit(targetLanguage);
+            }).fail(function () {
+                alert("Error loading country language data.");
+            });
+        }).fail(function () {
+            alert("Error retrieving IP information.");
+        });
+    });
+
+    // Function to initialize Google Translate with the target language
+    function googleTranslateElementInit(targetLanguage) {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',  // Set the default page language
+            includedLanguages: targetLanguage,  // Set the detected language
+            autoDisplay: true  // Enable automatic display
+        }, 'google_translate_element');
+
+        // Poll for the dropdown and set the language as soon as possible
+        function applyLanguageChange() {
+            var selectLanguage = document.querySelector('.goog-te-combo');
+            if (selectLanguage) {
+                selectLanguage.value = targetLanguage;  // Set the target language
+                selectLanguage.dispatchEvent(new Event('change'));  // Trigger the language change
+            } else {
+                requestAnimationFrame(applyLanguageChange);  // Poll until available
+            }
+        }
+        applyLanguageChange();
+    }
+</script>
+
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

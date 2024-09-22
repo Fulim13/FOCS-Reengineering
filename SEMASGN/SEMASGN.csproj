@@ -47,6 +47,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -66,8 +69,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\Home\HomePage.aspx" />
+    <Content Include="Client\ProgrammeDetails\ProgrammeDetails.aspx" />
+    <Content Include="Client\Programme\Programme.aspx" />
+    <Content Include="image\home2.jpg" />
+    <Content Include="image\home3.jpg" />
     <Content Include="image\focs.jpg" />
     <Content Include="image\home1.jpg" />
+    <Content Include="image\programme.jpeg" />
     <Content Include="image\tarumt-logo.png" />
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -112,11 +120,26 @@
     <Compile Include="Client\MasterPage\MasterPage.Master.designer.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
     </Compile>
+    <Compile Include="Client\ProgrammeDetails\ProgrammeDetails.aspx.cs">
+      <DependentUpon>ProgrammeDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\ProgrammeDetails\ProgrammeDetails.aspx.designer.cs">
+      <DependentUpon>ProgrammeDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\Programme\Programme.aspx.cs">
+      <DependentUpon>Programme.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Programme\Programme.aspx.designer.cs">
+      <DependentUpon>Programme.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client\MasterPage\MasterPage.Master" />
     <Content Include="Client\FOCS\data\messages.json" />
+    <Content Include="Client\MasterPage\countries.json" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

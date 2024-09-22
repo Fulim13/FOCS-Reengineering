@@ -51,15 +51,6 @@ namespace SEMASGN.Client.MasterPage
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkChat;
 
         /// <summary>
-        /// HyperLinkAbout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkAbout;
-
-        /// <summary>
         /// HyperLinkProgrammes control.
         /// </summary>
         /// <remarks>
@@ -69,6 +60,15 @@ namespace SEMASGN.Client.MasterPage
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkProgrammes;
 
         /// <summary>
+        /// HyperLinkAbout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkAbout;
+
+        /// <summary>
         /// HyperLinkFacilities control.
         /// </summary>
         /// <remarks>
@@ -76,24 +76,6 @@ namespace SEMASGN.Client.MasterPage
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkFacilities;
-
-        /// <summary>
-        /// HyperLinkResearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkResearch;
-
-        /// <summary>
-        /// HyperLinkContact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLinkContact;
 
         /// <summary>
         /// ContentPlaceHolder1 control.
