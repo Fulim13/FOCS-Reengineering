@@ -73,9 +73,11 @@
     </div>
        <!--  Your Content -->
    <div class="min-h-svh">
-
-       <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-       </asp:ContentPlaceHolder>
+       <form id="form1" runat="server">
+          
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </form>
    </div>
 
     <!-- Footer -->
