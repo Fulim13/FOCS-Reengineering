@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Web;
 using System.Web.Script.Serialization;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace SEMASGN.Client.Comparison
@@ -75,7 +73,7 @@ namespace SEMASGN.Client.Comparison
                                                Label lblMainCourse, Label lblLocalMinReq, Label lblInternationalMinReq, Label lblCareerProspects,
                                                Label lblPTDuration, Label lblFTDuration, Label lblType, Label lblCampus, Label lblIntake)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["LocalSqlServer"].ConnectionString;
 
             string query = "SELECT * FROM Programme WHERE id = @progId;";
 
