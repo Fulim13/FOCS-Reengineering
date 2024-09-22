@@ -69,7 +69,7 @@ namespace SEMASGN.Client.MasterPage
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkCheckMinReq;
 
         /// <summary>
-        /// HyperLinkAbout control.
+        /// HyperLinkProgrammes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
