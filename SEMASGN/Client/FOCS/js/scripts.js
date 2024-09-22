@@ -70,20 +70,20 @@ document.addEventListener("DOMContentLoaded", function () {
         // Cache agentAvailability element selection
         var agentAvailability = document.getElementById("agentAvailability");
 
-        // Create offline div
-        var offlineDiv = document.createElement("div");
-        offlineDiv.classList.add("availability", "offline");
-        offlineDiv.innerHTML = `<img src="./icons/time.svg" />Available: ${startHour}:00—${endHour}:00 (New York)<div class="agent-status"></div>`;
+        // Create online div
+        var onlineDiv = document.createElement("div");
+        onlineDiv.classList.add("availability", "online");
+        onlineDiv.innerHTML = `<img src="./icons/time.svg" />Available Now<div class="agent-status"></div>`;
 
-        // Check if current time is within business hours
-        if (nowUTC >= startUTC && nowUTC <= endUTC) {
-            offlineDiv.classList.replace("offline", "online");
-            offlineDiv.innerHTML =
-                '<img src="./icons/time.svg" />Available Now<div class="agent-status"></div>';
-        }
+        //// Check if current time is within business hours
+        //if (nowUTC >= startUTC && nowUTC <= endUTC) {
+        //    offlineDiv.classList.replace("offline", "online");
+        //    offlineDiv.innerHTML =
+        //        '<img src="./icons/time.svg" />Available Now<div class="agent-status"></div>';
+        //}
 
         // Append offlineDiv to agentAvailability
-        agentAvailability.appendChild(offlineDiv);
+        agentAvailability.appendChild(onlineDiv);
     }
 
     // Format timestamp
