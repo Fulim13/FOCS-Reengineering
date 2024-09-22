@@ -1,4 +1,4 @@
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -73,6 +73,7 @@
       <DependentUpon>FOCS.mdf</DependentUpon>
     </Content>
     <Content Include="Client\Comparison\Comparison.aspx" />
+    <Content Include="Client\FOCS\ResultUpload.aspx" />
     <Content Include="Client\Home\HomePage.aspx" />
     <Content Include="Client\ProgrammeDetails\ProgrammeDetails.aspx" />
     <Content Include="Client\Programme\Programme.aspx" />
@@ -107,6 +108,13 @@
     </Compile>
     <Compile Include="Client\Comparison\Comparison.aspx.designer.cs">
       <DependentUpon>Comparison.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Client\FOCS\ResultUpload.aspx.cs">
+      <DependentUpon>ResultUpload.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\FOCS\ResultUpload.aspx.designer.cs">
+      <DependentUpon>ResultUpload.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\Home\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
