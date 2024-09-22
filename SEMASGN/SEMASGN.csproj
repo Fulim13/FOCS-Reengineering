@@ -68,6 +68,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FOCS.mdf" />
+    <Content Include="App_Data\FOCS_log.ldf">
+      <DependentUpon>FOCS.mdf</DependentUpon>
+    </Content>
     <Content Include="Client\Comparison\Comparison.aspx" />
     <Content Include="Client\Home\HomePage.aspx" />
     <Content Include="Client\ProgrammeDetails\ProgrammeDetails.aspx" />
@@ -83,10 +87,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\FOCS.mdf" />
-    <Content Include="App_Data\FOCS_log.ldf">
-      <DependentUpon>FOCS.mdf</DependentUpon>
-    </Content>
     <Content Include="Client\FOCS\Chat.aspx" />
     <Content Include="Client\FOCS\icons\arrow-down.svg" />
     <Content Include="Client\FOCS\icons\arrow-up.svg" />
