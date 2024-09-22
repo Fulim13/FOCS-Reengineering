@@ -65,6 +65,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\Comparison\Comparison.aspx" />
     <Content Include="Client\Home\HomePage.aspx" />
     <Content Include="image\focs.jpg" />
     <Content Include="image\home1.jpg" />
@@ -89,10 +90,16 @@
     <Content Include="Client\FOCS\styles\styles.css" />
     <Content Include="Client\Home\WebForm1.aspx" />
     <Content Include="Client\MinReq\spm_req.aspx" />
-    <Content Include="Client\Comparison\Compare.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Comparison\Comparison.aspx.cs">
+      <DependentUpon>Comparison.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Comparison\Comparison.aspx.designer.cs">
+      <DependentUpon>Comparison.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Client\Home\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -117,13 +124,6 @@
     <Compile Include="Client\MinReq\spm_req.aspx.cs">
       <DependentUpon>spm_req.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Client\Comparison\Compare.aspx.cs">
-      <DependentUpon>Compare.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Client\Comparison\Compare.aspx.designer.cs">
-      <DependentUpon>Compare.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\MinReq\spm_req.aspx.designer.cs">
       <DependentUpon>spm_req.aspx</DependentUpon>

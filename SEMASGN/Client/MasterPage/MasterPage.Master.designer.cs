@@ -51,6 +51,24 @@ namespace SEMASGN.Client.MasterPage
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkChat;
 
         /// <summary>
+        /// HyperLinkCompare control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkCompare;
+
+        /// <summary>
+        /// HyperLinkCheckMinReq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkCheckMinReq;
+
+        /// <summary>
         /// HyperLinkAbout control.
         /// </summary>
         /// <remarks>

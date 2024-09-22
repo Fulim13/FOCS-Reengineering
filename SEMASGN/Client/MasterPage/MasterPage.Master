@@ -34,6 +34,14 @@
             <asp:HyperLink ID="HyperLinkChat" class="cursor" runat="server" NavigateUrl="~/Client/FOCS/Chat.aspx" CssClass="text-white hover:text-gray-300">
                 Chat
             </asp:HyperLink>
+                    
+            <asp:HyperLink ID="HyperLinkCompare" class="cursor" runat="server" NavigateUrl="~/Client/Comparison/Comparison.aspx" CssClass="text-white hover:text-gray-300">
+                Compare
+            </asp:HyperLink>
+                    
+            <asp:HyperLink ID="HyperLinkCheckMinReq" class="cursor" runat="server" NavigateUrl="~/Client/MinReq/spm_req.aspx" CssClass="text-white hover:text-gray-300">
+                Min Req
+            </asp:HyperLink>
 
                     <asp:HyperLink ID="HyperLinkAbout" runat="server" NavigateUrl="~/about" CssClass="text-white hover:text-gray-300">
                 About Us
@@ -71,8 +79,11 @@
     </div>
        <!--  Your Content -->
    <div class="min-h-svh">
+       <form runat="server">
+
        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
        </asp:ContentPlaceHolder>
+       </form>
    </div>
 
    <!-- Footer -->
