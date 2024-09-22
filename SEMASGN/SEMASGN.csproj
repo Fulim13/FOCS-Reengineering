@@ -89,6 +89,7 @@
     <Content Include="Client\FOCS\styles\styles.css" />
     <Content Include="Client\Home\WebForm1.aspx" />
     <Content Include="Client\MinReq\spm_req.aspx" />
+    <Content Include="Client\Comparison\Compare.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +117,13 @@
     <Compile Include="Client\MinReq\spm_req.aspx.cs">
       <DependentUpon>spm_req.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Comparison\Compare.aspx.cs">
+      <DependentUpon>Compare.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\Comparison\Compare.aspx.designer.cs">
+      <DependentUpon>Compare.aspx</DependentUpon>
     </Compile>
     <Compile Include="Client\MinReq\spm_req.aspx.designer.cs">
       <DependentUpon>spm_req.aspx</DependentUpon>
