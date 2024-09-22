@@ -47,13 +47,13 @@
                 <div class="p-4">
                     <h3 class="mb-2 text-xl font-semibold">Explore All Programmes</h3>
                     <p class="text-gray-600 mb-4">Learn beyond a formal education. Develop your learning muscle while pursuing various degrees.</p>
-                    <a href="#" class="text-blue-600 hover:underline">Learn More &rarr;</a>
+                    <a href="~/Client/Programme/Programme.aspx" class="text-blue-600 hover:underline">Learn More &rarr;</a>
                 </div>
             </div>
 
             <!-- Second Card -->
             <div class="w-96 bg-white flex-shrink-0 rounded-lg shadow-md">
-                <asp:Image ID="Image1" runat="server" ImageUrl="~/image/home1.jpg" alt="TARUMT Logo" class="h-56 w-full rounded-t-lg object-cover" />
+                <asp:Image ID="Image1" runat="server" ImageUrl="~/image/home2.jpg" alt="TARUMT Logo" class="h-56 w-full rounded-t-lg object-cover" />
                 <div class="p-4">
                     <h3 class="mb-2 text-xl font-semibold">Undergraduate Scholarships</h3>
                     <p class="text-gray-600 mb-4">Benefit from scholarships designed for the brightest talents.</p>
@@ -63,17 +63,7 @@
 
             <!-- Third Card (Half-visible) -->
             <div class="w-96 bg-white flex-shrink-0 rounded-lg shadow-md">
-                <asp:Image ID="Image2" runat="server" ImageUrl="~/image/home1.jpg" alt="TARUMT Logo" class="h-56 w-full rounded-t-lg object-cover" />
-                <div class="p-4">
-                    <h3 class="mb-2 text-xl font-semibold">Community</h3>
-                    <p class="text-gray-600 mb-4">Join our community, supported by peers and mentors.</p>
-                    <a href="#" class="text-blue-600 hover:underline">Learn More &rarr;</a>
-                </div>
-            </div>
-
-            <!-- Third Card (Half-visible) -->
-            <div class="w-96 bg-white flex-shrink-0 rounded-lg shadow-md">
-                <asp:Image ID="Image4" runat="server" ImageUrl="~/image/home1.jpg" alt="TARUMT Logo" class="h-56 w-full rounded-t-lg object-cover" />
+                <asp:Image ID="Image2" runat="server" ImageUrl="~/image/home3.jpg" alt="TARUMT Logo" class="h-56 w-full rounded-t-lg object-cover" />
                 <div class="p-4">
                     <h3 class="mb-2 text-xl font-semibold">Community</h3>
                     <p class="text-gray-600 mb-4">Join our community, supported by peers and mentors.</p>
@@ -88,19 +78,18 @@
 
         <!-- Appointment Text Section -->
         <p class="text-gray-700 mb-4 text-lg">
-            Schedule an appointment to get an online counselling session where you can ask anything about our programmes and the wide range of scholarships for exceptional students!
+            Get an online counselling session where you can ask anything about our programmes and the wide range of scholarships for exceptional students!
         </p>
 
         <!-- CTA Button Section -->
-        <div class="space-x-4 flex items-center">
+        <div class="space-x-4 cursor flex items-center" >
             <!-- Red Rounded Icon (Left) -->
             <div class="w-12 h-12 border-yellow-500 flex items-center justify-center rounded-full border-2">
                 <span class="text-yellow-500 text-xl">&#x279C;</span>
                 <!-- Arrow Icon -->
             </div>
-
             <!-- Button Text (Right) -->
-            <a href="#" class="text-gray-900 text-xl font-bold hover:text-yellow-500">SCHEDULE APPOINTMENT
+            <a href="../FOCS/Chat.aspx" class="text-gray-900 text-xl font-bold hover:text-yellow-500">Chat to Us
             </a>
         </div>
            <!-- Top Divider Line -->
@@ -168,6 +157,7 @@
       </div>
     </div>
   </div>
+
 
     <script>
         const scrollContainer = document.getElementById('scrollContainer');
