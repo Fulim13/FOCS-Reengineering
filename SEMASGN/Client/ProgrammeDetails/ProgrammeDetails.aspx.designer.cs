@@ -42,6 +42,15 @@ namespace SEMASGN.Client.ProgrammeDetails
         protected global::System.Web.UI.WebControls.Literal programmeDescription;
 
         /// <summary>
+        /// btnChat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnChat;
+
+        /// <summary>
         /// programmeCampus control.
         /// </summary>
         /// <remarks>

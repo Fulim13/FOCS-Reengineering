@@ -25,9 +25,8 @@
                 <p class="text-gray-600 mb-4">
                     <asp:Literal ID="programmeDescription" runat="server" />
                 </p>
-                <button class="bg-blue-500 text-white py-2 px-4 rounded font-bold hover:bg-blue-600" onclick="window.location.href='~/Client/FOCS/Chat.aspx';">
-                    CHAT TO US
-                </button>
+                <asp:Button ID="btnChat" runat="server" Text="CHAT TO US" CssClass="bg-blue-500 text-white py-2 px-4 rounded font-bold hover:bg-blue-600" OnClick="btnChat_Click" />
+
 
             </section>
 

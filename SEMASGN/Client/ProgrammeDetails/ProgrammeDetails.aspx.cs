@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Xml.Linq;
-using Newtonsoft.Json.Linq;
 
 
 namespace SEMASGN.Client.ProgrammeDetails
@@ -31,6 +24,12 @@ namespace SEMASGN.Client.ProgrammeDetails
                 }
             }
         }
+
+        protected void btnChat_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Client/FOCS/Chat.aspx");
+        }
+
 
         private void LoadProgrammeDetails(string programmeId, string userType)
         {
