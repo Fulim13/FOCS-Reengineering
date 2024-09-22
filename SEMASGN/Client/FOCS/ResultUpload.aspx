@@ -13,8 +13,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="bg-gray-100 p-8">
-        <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-2xl font-bold mb-4">Upload Your Result Image</h2>
+        <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-2xl font-bold mb-4">Upload Your SPM Result Image (Beta)</h2>
+            <div class="mb-4">Currently, this tool only supports SPM results for the Foundation in Computing, Diploma in Computer Science, and Diploma in Information Technology programs. </div>
+            <div class="mb-4">Please be aware that the accuracy of the results may vary based on the quality of the uploaded image.</div>
+
+            <div class="mb-4">Ensure that the image is clear and legible for the best results.</div>
             <div id="uploadForm" class="space-y-4">
                 <div>
                     <label for="<%= ddlProgram.ClientID %>" class="block text-sm font-medium text-gray-700 mb-1">Select Program</label>
@@ -67,9 +71,9 @@
                     if (data.data) {
                         // Convert color attribute to inline style
                         const modifiedData = data.data.replace(/color='([^']+)'/g, "style='color:$1'");
-                        responseMessage.innerHTML = modifiedData;
+                        responseMessage.innerHTML = modifiedData + "\n\n<br><strong>Note:</strong> The generated results may not be accurate. If you are unsure about your results, please contact FOCS for more information at 03-4145 0123 ext 3233, 011-1075 8554, or via email at focs@tarc.edu.my. You can also visit us on the 2nd Floor, Bangunan Tan Sri Khaw Kai Boh (Block A).";
                     } else {
-                        responseMessage.textContent = data.error || "An unknown error occurred.";
+                        responseMessage.innerHTML = modifiedData;                        
                     }
                 })
                 .catch(error => {

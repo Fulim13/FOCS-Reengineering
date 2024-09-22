@@ -44,6 +44,10 @@
                 Min Req
             </asp:HyperLink>
 
+            <asp:HyperLink ID="HyperLinkSPMResultCheck" class="cursor" runat="server" NavigateUrl="~/Client/FOCS/ResultUpload.aspx" CssClass="text-white hover:text-gray-300">
+                SPM Check
+            </asp:HyperLink>
+
                     <asp:HyperLink ID="HyperLinkProgrammes" runat="server" NavigateUrl="~/Client/Programme/Programme.aspx" CssClass="text-white hover:text-gray-300">
                 Programmes
                     </asp:HyperLink>

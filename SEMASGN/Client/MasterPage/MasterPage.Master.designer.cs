@@ -69,6 +69,15 @@ namespace SEMASGN.Client.MasterPage
         protected global::System.Web.UI.WebControls.HyperLink HyperLinkCheckMinReq;
 
         /// <summary>
+        /// HyperLinkSPMResultCheck control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink HyperLinkSPMResultCheck;
+
+        /// <summary>
         /// HyperLinkProgrammes control.
         /// </summary>
         /// <remarks>
