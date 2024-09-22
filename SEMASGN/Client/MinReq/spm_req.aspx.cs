@@ -91,7 +91,7 @@ namespace SEMASGN.Client.MinReq
             {
                 case "Degree":
                     requirementTypeSection.Visible = true;
-                    subjectSection.Visible = false; 
+                    subjectSection.Visible = false;
                     cgpaSection.Visible = false;
                     mqfSection.Visible = false;
 
@@ -477,7 +477,7 @@ namespace SEMASGN.Client.MinReq
         private bool CheckUECRequirements((string Subject, string Grade)[] subjectsAndGrades)
         {
             int requiredCount = 5;
-            string[] validGrades = { "A1", "A2", "B3", "B4", "B5", "B6" }; 
+            string[] validGrades = { "A1", "A2", "B3", "B4", "B5", "B6" };
 
             int count = 0;
             foreach (var (_, grade) in subjectsAndGrades)
@@ -544,7 +544,7 @@ namespace SEMASGN.Client.MinReq
 
         private bool CheckCGPARequirements(decimal userCGPA, string requirementType)
         {
-            decimal minCGPA = 2.50m; 
+            decimal minCGPA = 2.50m;
 
             return userCGPA >= minCGPA;
         }
@@ -555,7 +555,7 @@ namespace SEMASGN.Client.MinReq
             bool isEnglishEligible = false;
 
             string[] validMathGrades;
-            string[] validEnglishGrades = { "A+", "A", "A-", "B+", "B", "C+", "C", "D", "E" }; 
+            string[] validEnglishGrades = { "A+", "A", "A-", "B+", "B", "C+", "C", "D", "E" };
 
             switch (requirementType)
             {
@@ -564,16 +564,16 @@ namespace SEMASGN.Client.MinReq
                 case "UEC":
                 case "OtherIHL":
                     // Bachelor's degree requirements
-                    validMathGrades = new string[] { "A+", "A", "A-", "B+", "B", "C+", "C" }; 
+                    validMathGrades = new string[] { "A+", "A", "A-", "B+", "B", "C+", "C" };
                     break;
                 case "SPM":
                 case "OLevel":
                 case " UEC":
                     // Foundation/Diploma requirements
-                    validMathGrades = new string[] { "A+", "A", "A-", "B+", "B", "C+", "C" }; 
+                    validMathGrades = new string[] { "A+", "A", "A-", "B+", "B", "C+", "C" };
                     break;
                 default:
-                    validMathGrades = new string[] { "A", "B", "C", "D", "E" }; 
+                    validMathGrades = new string[] { "A", "B", "C", "D", "E" };
                     break;
             }
 
