@@ -73,7 +73,7 @@
                         const modifiedData = data.data.replace(/color='([^']+)'/g, "style='color:$1'");
                         responseMessage.innerHTML = modifiedData + "\n\n<br><strong>Note:</strong> The generated results may not be accurate. If you are unsure about your results, please contact FOCS for more information at 03-4145 0123 ext 3233, 011-1075 8554, or via email at focs@tarc.edu.my. You can also visit us on the 2nd Floor, Bangunan Tan Sri Khaw Kai Boh (Block A).";
                     } else {
-                        responseMessage.innerHTML = modifiedData;                        
+                        responseMessage.innerHTML = "Try again";                        
                     }
                 })
                 .catch(error => {
